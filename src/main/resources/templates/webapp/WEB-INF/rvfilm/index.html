@@ -4,7 +4,7 @@
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 
-<head>
+<head th:fragment="head">
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="description" content="News - Clean HTML5 and CSS3 responsive template">
@@ -30,6 +30,9 @@
 <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <!--[if lt IE 9]> <script type="text/javascript" src="js/customM.js"></script> <![endif]-->
 
+<script>
+        var a = Math.floor(Math.random() * 11);
+    </script>
 
 </head>
 
@@ -41,7 +44,7 @@
     <div class="controller2">
 
         <!-- Header -->
-        <header id="header">
+        <header id="header" th:fragment="header" >
             <div class="container">
                 <div class="column">
                     <div class="logo">
@@ -66,7 +69,14 @@
                                     <li><i class="icon-right-open"></i><a href="NEW">NEW</a></li>
                                 </ul>
                             </li>
-                            <li><a href="reviews.html">ADMIN</a></li>
+                            <li> <a href="#">THỂ LOẠI</a>
+                                <ul>
+                                    <li><i class="icon-right-open"></i><a th:href="@{Anime}">Anime</a></li>
+                                    <li><i class="icon-right-open"></i><a th:href="@{TrinhTham}">Trinh Thám</a></li>
+                                    <li><i class="icon-right-open"></i><a th:href="@{VienTuong}">Viễn Tưởng</a></li>
+                                </ul>
+                                </li>
+                            <li><a href="/admin/index">ADMIN</a></li>
                             
                             <li><a href="contact.html">LIÊN HỆ.</a></li>                        
                         </ul>
@@ -86,48 +96,17 @@
                     	<p><a href="#">Popular.</a></p>
                     </div>
                 	<div class="flexslider">
-                        <ul class="slides">
+                        <ul class="slides" th:each="film, iterStat: ${films}">
                             <li>
-                                <img src="img/flexslider/1.png" alt="MyPassion" />
-                                <p class="flex-caption"><a href="#">Google wants more women in tech.</a> Donec bibendum dolor at ante. Proin neque dui, pre tium quis fringilla ut,  sodales sed. </p>
+                               <a th:href="${film.id}"> <img th:src="@{img/{imgname}(imgname=${film.img})}" alt="MyPassion"  width="937" height="600"/>
+                                <p class="flex-caption"  th:text="${film.title}"> </p>
+                                                     </a>
                             </li>
-                            <li>
-                                <img src="img/flexslider/3.png" alt="MyPassion" />
-                                <p class="flex-caption"><a href="#">Small Businesses Surge against all expectations.</a> Donec bibendum dolor at ante. Proin neque dui, pre tium quis fringilla ut,  sodales sed. </p>
-                            </li>
-                            <li>
-                                <img src="img/flexslider/5.png" alt="MyPassion" />
-                                <p class="flex-caption"><a href="#">Drones: Future of disaster response?</a> Donec bibendum dolor at ante. Proin neque dui, pre tium quis fringilla ut,  sodales sed. </p>
-                            </li>
-                            <li>
-                                <img src="img/flexslider/4.png" alt="MyPassion" />
-                                <p class="flex-caption"><a href="#">Hollywood cowboys' retreat. </a> Donec bibendum dolor at ante. Proin neque dui, pre tium quis fringilla ut,  sodales sed. </p>
-                            </li>
-                            <li>
-                                <img src="img/flexslider/2.png" alt="MyPassion" />
-                                <p class="flex-caption"><a href="#">Stress may cause cravings.</a> Donec bibendum dolor at ante. Proin neque dui, pre tium quis fringilla ut,  sodales sed. </p>
-                            </li>
+                           
                         </ul>
                     </div>
                 </div>
                 
-                <div class="slider2">
-                	<div class="badg">
-                    	<p><a href="#">Latest.</a></p>
-                    </div>
-                    <a href="#"><img src="img/flexslider/6.png" alt="MyPassion" /></a>
-                    <p class="caption"><a href="#">We Are News.</a> Donec bibendum dolor at ante. Proin neque dui, pre tium quis fringilla ut,  sodales sed metus. </p>
-                </div>
-                
-                <div class="slider3">
-                	<a href="#"><img src="img/trash/3.png" alt="MyPassion" /></a>
-                    <p class="caption"><a href="#">Happy Birthday, blue jeans! </a></p>
-                </div>
-                
-                <div class="slider3">
-                	<a href="#"><img src="img/trash/4.png" alt="MyPassion" /></a>
-                    <p class="caption"><a href="#">Fantasy Family Photos </a></p>
-                </div>
                 
             </div>    
         </section>
@@ -142,7 +121,7 @@
                     <!-- World News -->
                     <div class="column-two-third">
                     	<h5 class="line">
-                        	<span>World News.</span>
+                        	<span>Film HOT</span>
                             <div class="navbar">
                                 <a id="next2" class="next" href="#"><span></span></a>	
                                 <a id="prev2" class="prev" href="#"><span></span></a>
@@ -150,62 +129,41 @@
                         </h5>
                         
                         <div class="outerwide" >
-                        	<ul class="wnews" id="carousel2">
-                            	<li>
-                                	<img src="img/trash/25.png" alt="MyPassion" class="alignleft" />
-                                    <h6 class="regular"><a href="#">Blandit Rutrum, Erat et Sagittis. Lorem Ipsum Dolor, Sit Amet Adipsing.</a></h6>
-                                    <span class="meta">26 May, 2013.   \\   <a href="#">World News.</a>   \\   <a href="#">No Coments.</a></span>
-                                    <p>Blandit rutrum, erat et egestas ultricies, dolor tortor egestas enim, quiste rhoncus sem purus eu sapien. Curabitur a orci nec risus lacinia vehic...</p>
+                       
+                        	<ul class="wnews" id="carousel2" > 
+                        	<th:block th:each="filmhot, state : ${filmsHOT}">
+                            	<th:block th:if="${state.count}<=3">
+                                <li >
+                                <a th:href="${filmhot.id}">
+                                	<img th:src="@{img/{imgname}(imgname=${filmhot.img})}"  alt="MyPassion" class="alignleft" width="300" height="180" />
+                                    <h6 class="regular"><a href="#" th:text="${filmhot.title}"></a></h6>
+                     
+        			<span class="meta">26 May, 2013.   \\   <a href="#">World News.</a>   \\   <a href="#">No Coments.</a></span>
+                                    <p th:text="${filmhot.short_content}"></p>
+                                     </a>
                                 </li>
-                                <li>
-                                	<img src="img/trash/24.png" alt="MyPassion" class="alignleft" />
-                                    <h6 class="regular"><a href="#">Blandit Rutrum, Erat et Sagittis. Lorem Ipsum Dolor, Sit Amet Adipsing.</a></h6>
-                                    <span class="meta">26 May, 2013.   \\   <a href="#">World News.</a>   \\   <a href="#">No Coments.</a></span>
-                                    <p>Blandit rutrum, erat et egestas ultricies, dolor tortor egestas enim, quiste rhoncus sem purus eu sapien. Curabitur a orci nec risus lacinia vehic...</p>
-                                </li>
-                                <li>
-                                	<img src="img/trash/26.png" alt="MyPassion" class="alignleft" />
-                                    <h6 class="regular"><a href="#">Blandit Rutrum, Erat et Sagittis. Lorem Ipsum Dolor, Sit Amet Adipsing.</a></h6>
-                                    <span class="meta">26 May, 2013.   \\   <a href="#">World News.</a>   \\   <a href="#">No Coments.</a></span>
-                                    <p>Blandit rutrum, erat et egestas ultricies, dolor tortor egestas enim, quiste rhoncus sem purus eu sapien. Curabitur a orci nec risus lacinia vehic...</p>
-                                </li>
+                               
+                                </th:block>
+                                 </th:block>
                             </ul>
+                           
                         </div>
                         
                         <div class="outerwide">
                         	<ul class="block2">
-                                <li>
-                                    <a href="#"><img src="img/trash/17.png" alt="MyPassion" class="alignleft" /></a>
-                                    <p>
-                                        <span>26 May, 2013.</span>
-                                        <a href="#">Blandit Rutrum, Erat et Sagittis.</a>
-                                    </p>
-                                    <span class="rating"><span style="width:80%;"></span></span>
-                                </li>
+                        	<th:block th:each="filmhot, state : ${filmsHOT}">
+                            	<th:block th:if="${state.count}>3">
+                               
                                 <li class="m-r-no">
-                                    <a href="#"><img src="img/trash/18.png" alt="MyPassion" class="alignleft" /></a>
+                                    <a th:href="${filmhot.id}"><img th:src="@{img/{imgname}(imgname=${filmhot.img})} "width="75" height="75" alt="MyPassion" class="alignleft" /></a>
                                     <p>
                                         <span>26 May, 2013.</span>
-                                        <a href="#">Blandit Rutrum, Erat et Sagittis.</a>
+                                        <a href="#" th:text="${filmhot.title}"></a>
                                     </p>
                                     <span class="rating"><span style="width:100%;"></span></span>
                                 </li>
-                                <li>
-                                    <a href="#"><img src="img/trash/19.png" alt="MyPassion" class="alignleft" /></a>
-                                    <p>
-                                        <span>26 May, 2013.</span>
-                                        <a href="#">Blandit Rutrum, Erat et Sagittis.</a>
-                                    </p>
-                                    <span class="rating"><span style="width:70%;"></span></span>
-                                </li>
-                                <li class="m-r-no">
-                                    <a href="#"><img src="img/trash/20.png" alt="MyPassion" class="alignleft" /></a>
-                                    <p>
-                                        <span>26 May, 2013.</span>
-                                        <a href="#">Blandit Rutrum, Erat et Sagittis.</a>
-                                    </p>
-                                    <span class="rating"><span style="width:60%;"></span></span>
-                                </li>
+                                </th:block>
+                                </th:block>
                             </ul>
                         </div>
                     </div>

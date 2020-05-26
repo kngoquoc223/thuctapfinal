@@ -90,6 +90,26 @@ public class News {
 		return hot;
 	}
 
+	public void setHot(int hot) {
+		this.hot = hot;
+	}
+
+	public int getNews() {
+		return news;
+	}
+
+	public void setNews(int news) {
+		this.news = news;
+	}
+
+	public int getPoint() {
+		return point;
+	}
+
+	public void setPoint(int point) {
+		this.point = point;
+	}
+
 	public News(Integer id, String title, String content, String short_content, String theloai, String img, int hot,
 			int news, int point) {
 		super();
@@ -104,37 +124,10 @@ public class News {
 		this.point = point;
 	}
 
-	public int getPoint() {
-		return point;
-	}
-
-	public void setPoint(int point) {
-		this.point = point;
-	}
-
-	public void setHot(int hot) {
-		this.hot = hot;
-	}
-
-	public int getNews() {
-		return news;
-	}
-
-	public void setNews(int news) {
-		this.news = news;
-	}
-	
-	
-
-	@Override
-	public String toString() {
-		return "News [id=" + id + ", title=" + title + ", content=" + content + ", short_content=" + short_content
-				+ ", theloai=" + theloai + ", img=" + img + ", hot=" + hot + ", news=" + news + ", point=" + point
-				+ "]";
-	}
-
 	public News() {
 	}
+	
+	}
 
 	
 
@@ -142,4 +135,3 @@ public class News {
 	
 	
 
-}

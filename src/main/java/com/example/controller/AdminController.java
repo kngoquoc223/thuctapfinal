@@ -19,11 +19,12 @@ import com.example.service.NewsService;
 
 
 @Controller
+@RequestMapping("admin")
 public class AdminController {
 	
 	@Autowired
 	private NewsService newsService;
-	@RequestMapping(value="/admin",method = RequestMethod.GET)
+	@RequestMapping(value="/index",method = RequestMethod.GET)
 	public String index(ModelMap modelMap) {
 		return "webapp/WEB-INF/rvfilm/admin/index";
 	}

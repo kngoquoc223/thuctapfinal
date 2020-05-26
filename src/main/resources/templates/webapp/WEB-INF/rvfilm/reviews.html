@@ -4,31 +4,8 @@
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 
-<head>
+<head th:replace="webapp/WEB-INF/rvfilm/index.html :: head">
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="description" content="News - Clean HTML5 and CSS3 responsive template">
-<meta name="author" content="MyPassion">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-<title>News - Responsive HTML5 and CSS3 template</title>
-
-<link rel="shortcut icon" th:href="@{/img/sms-4.ico}" />
-
-<!-- STYLES -->
-<link rel="stylesheet" type="text/css" th:href="@{/css/superfish.css}" media="screen"/>
-<link rel="stylesheet" type="text/css" th:href="@{/css/fontello/fontello.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/flexslider.css}" media="screen" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/ui.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/base.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/960.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/devices/1000.css}" media="only screen and (min-width: 768px) and (max-width: 1000px)" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/devices/767.css}" media="only screen and (min-width: 480px) and (max-width: 767px)" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/devices/479.css}" media="only screen and (min-width: 200px) and (max-width: 479px)" />
-<link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
-<!--[if lt IE 9]> <script type="text/javascript" src="js/customM.js"></script> <![endif]-->
 
 
 </head>
@@ -42,40 +19,8 @@
 
         <!-- Header -->
          <!-- Header -->
-        <header id="header">
-            <div class="container">
-                <div class="column">
-                    <div class="logo">
-                        <a href="index"><img th:src="@{/img/lo.png}" alt="MyPassion" /></a>
-                    </div>
-                    
-                    <div class="search">
-                        <form action="#" method="post">
-                            <input type="text" value="Search." onblur="if(this.value=='') this.value='Search.';" onfocus="if(this.value=='Search.') this.value='';" class="ft"/>
-                            <input type="submit" value="" class="fs">
-                        </form>
-                    </div>
-                    
-                    <!-- Nav -->
-                    <nav id="nav">
-                        <ul class="sf-menu">
-                            <li class="current"><a href="index">TRANG CHỦ.</a></li>
-                            <li>
-                            	<a href="#">REVIEW PHIM.</a>
-                                <ul>
-                                    <li><i class="icon-right-open"></i><a href="HOT">HOT</a></li>
-                                    <li><i class="icon-right-open"></i><a href="NEW">NEW</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="reviews.html">ADMIN</a></li>
-                            
-                            <li><a href="contact.html">LIÊN HỆ.</a></li>                        
-                        </ul>
-                        
-                    </nav>
-                    <!-- /Nav -->
-                </div>
-            </div>
+        <header id="header"  th:replace="webapp/WEB-INF/rvfilm/index.html :: header">
+           
         </header>
         <!-- /Header -->
         
@@ -94,203 +39,59 @@
                 	
                     <!-- Popular News -->
                 	<div class="column-two-third">
+                	<th:block th:each="filmhot, state : ${filmsDM}">
+                            	<th:block th:if="${state.count}==1">
                     	<div class="outertight m-t-no">
-                            <div class="badg">
-                                <p><a href="#">Featured.</a></p>
-                            </div>
                             <div class="flexslider">
                                 <ul class="slides">
+                                <a th:href="${filmhot.id}">
                                     <li>
-                                        <img src="img/trash/25.png" alt="MyPassion" />
+                                        <img th:src="@{img/{imgname}(imgname=${filmhot.img})}" alt="MyPassion"  width="450" height="200" />
                                     </li>
-                                    <li>
-                                        <img src="img/trash/24.png" alt="MyPassion" />
-                                    </li>
-                                    <li>
-                                        <img src="img/trash/26.png" alt="MyPassion" />
-                                    </li>
+                                    </a>
                                 </ul>
                             </div>
                             
-                            <h6 class="regular"><a href="single.html">Blandit Rutrum, Erat et Sagittis. Lorem
-Ipsum Dolor, Sit Amet Adipsing.</a></h6>
+                            <h6 class="regular"><a href="single.html" th:text="${filmhot.title}"></a></h6>
                             <span class="meta">26 May, 2013.   \\   <a href="#">World News.</a>   \\   <a href="#">No Coments.</a></span>
-                            <p>Blandit rutrum, erat et egestas ultricies, dolor tortor egestas enim, quiste rhoncus sem purus eu sapien. Curabitur a orci nec risus lacinia vehic. Lorem ipsum 
-dolor adipcising elit. Erat egestan sagittis lorem aupo dolor sit ameta, auctor libero tempor...</p>
+                             <p th:text="${filmhot.short_content}"></p>
                         </div>
+                        </th:block>
+                        </th:block>
                         
+                        <th:block th:each="filmhot, state : ${filmsDM}">
+                            	<th:block th:if="${state.count}==2">
                         <div class="outertight m-r-no m-t-no">
-                            <div class="badg">
-                                <p><a href="#">Featured.</a></p>
-                            </div>
                             <div class="flexslider">
                                 <ul class="slides">
+                                    <a th:href="${filmhot.id}">
                                     <li>
-                                        <img src="img/trash/27.png" alt="MyPassion" />
+                                        <img th:src="@{img/{imgname}(imgname=${filmhot.img})}" alt="MyPassion"  width="450" height="200" />
                                     </li>
-                                    <li>
-                                        <img src="img/trash/26.png" alt="MyPassion" />
-                                    </li>
-                                    <li>
-                                        <img src="img/trash/24.png" alt="MyPassion" />
-                                    </li>
+                                    </a>
                                 </ul>
                             </div>
                             
-                            <h6 class="regular"><a href="single.html">Blandit Rutrum, Erat et Sagittis. Lorem
-Ipsum Dolor, Sit Amet Adipsing.</a></h6>
+                            <h6 class="regular"><a href="single.html"  th:text="${filmhot.title}"></a></h6>
                             <span class="meta">26 May, 2013.   \\   <a href="#">World News.</a>   \\   <a href="#">No Coments.</a></span>
-                            <p>Blandit rutrum, erat et egestas ultricies, dolor tortor egestas enim, quiste rhoncus sem purus eu sapien. Curabitur a orci nec risus lacinia vehic. Lorem ipsum 
-dolor adipcising elit. Erat egestan sagittis lorem aupo dolor sit ameta, auctor libero tempor...</p>
+                             <p th:text="${filmhot.short_content}"></p>
                         </div>
-                        
+                        </th:block>
+                        </th:block>
                         <div class="outerwide">
                         	<ul class="block2">
-                                <li>
-                                    <a href="single.html"><img src="img/trash/5.png" alt="MyPassion" class="alignleft" /></a>
-                                    <p>
-                                        <span>26 May, 2013.</span>
-                                        <a href="single.html">Blandit Rutrum, Erat et Sagittis.</a>
-                                    </p>
-                                    <span class="rating"><span style="width:80%;"></span></span>
-                                </li>
+                               <th:block th:each="filmhot, state : ${filmsDM}">
+                            	<th:block th:if="${state.count}>=3">
                                 <li class="m-r-no">
-                                    <a href="single.html"><img src="img/trash/6.png" alt="MyPassion" class="alignleft" /></a>
+                                    <a th:href="${filmhot.id}"><img th:src="@{img/{imgname}(imgname=${filmhot.img})}" alt="MyPassion" class="alignleft"  width="75px" height="75px"/></a>
                                     <p>
                                         <span>26 May, 2013.</span>
-                                        <a href="single.html">Blandit Rutrum, Erat et Sagittis.</a>
+                                        <a href="single.html" th:text="${filmhot.title}"></a>
                                     </p>
                                     <span class="rating"><span style="width:100%;"></span></span>
                                 </li>
-                                <li>
-                                    <a href="single.html"><img src="img/trash/7.png" alt="MyPassion" class="alignleft" /></a>
-                                    <p>
-                                        <span>26 May, 2013.</span>
-                                        <a href="single.html">Blandit Rutrum, Erat et Sagittis.</a>
-                                    </p>
-                                    <span class="rating"><span style="width:70%;"></span></span>
-                                </li>
-                                <li class="m-r-no">
-                                    <a href="single.html"><img src="img/trash/8.png" alt="MyPassion" class="alignleft" /></a>
-                                    <p>
-                                        <span>26 May, 2013.</span>
-                                        <a href="single.html">Blandit Rutrum, Erat et Sagittis.</a>
-                                    </p>
-                                    <span class="rating"><span style="width:60%;"></span></span>
-                                </li>
-                                <li>
-                                    <a href="single.html"><img src="img/trash/9.png" alt="MyPassion" class="alignleft" /></a>
-                                    <p>
-                                        <span>26 May, 2013.</span>
-                                        <a href="single.html">Blandit Rutrum, Erat et Sagittis.</a>
-                                    </p>
-                                    <span class="rating"><span style="width:80%;"></span></span>
-                                </li>
-                                <li class="m-r-no">
-                                    <a href="single.html"><img src="img/trash/10.png" alt="MyPassion" class="alignleft" /></a>
-                                    <p>
-                                        <span>26 May, 2013.</span>
-                                        <a href="single.html">Blandit Rutrum, Erat et Sagittis.</a>
-                                    </p>
-                                    <span class="rating"><span style="width:100%;"></span></span>
-                                </li>
-                                <li>
-                                    <a href="single.html"><img src="img/trash/11.png" alt="MyPassion" class="alignleft" /></a>
-                                    <p>
-                                        <span>26 May, 2013.</span>
-                                        <a href="single.html">Blandit Rutrum, Erat et Sagittis.</a>
-                                    </p>
-                                    <span class="rating"><span style="width:70%;"></span></span>
-                                </li>
-                                <li class="m-r-no">
-                                    <a href="single.html"><img src="img/trash/12.png" alt="MyPassion" class="alignleft" /></a>
-                                    <p>
-                                        <span>26 May, 2013.</span>
-                                        <a href="single.html">Blandit Rutrum, Erat et Sagittis.</a>
-                                    </p>
-                                    <span class="rating"><span style="width:60%;"></span></span>
-                                </li>
-                                <li>
-                                    <a href="single.html"><img src="img/trash/13.png" alt="MyPassion" class="alignleft" /></a>
-                                    <p>
-                                        <span>26 May, 2013.</span>
-                                        <a href="single.html">Blandit Rutrum, Erat et Sagittis.</a>
-                                    </p>
-                                    <span class="rating"><span style="width:80%;"></span></span>
-                                </li>
-                                <li class="m-r-no">
-                                    <a href="single.html"><img src="img/trash/14.png" alt="MyPassion" class="alignleft" /></a>
-                                    <p>
-                                        <span>26 May, 2013.</span>
-                                        <a href="single.html">Blandit Rutrum, Erat et Sagittis.</a>
-                                    </p>
-                                    <span class="rating"><span style="width:100%;"></span></span>
-                                </li>
-                                <li>
-                                    <a href="single.html"><img src="img/trash/15.png" alt="MyPassion" class="alignleft" /></a>
-                                    <p>
-                                        <span>26 May, 2013.</span>
-                                        <a href="single.html">Blandit Rutrum, Erat et Sagittis.</a>
-                                    </p>
-                                    <span class="rating"><span style="width:70%;"></span></span>
-                                </li>
-                                <li class="m-r-no">
-                                    <a href="single.html"><img src="img/trash/16.png" alt="MyPassion" class="alignleft" /></a>
-                                    <p>
-                                        <span>26 May, 2013.</span>
-                                        <a href="single.html">Blandit Rutrum, Erat et Sagittis.</a>
-                                    </p>
-                                    <span class="rating"><span style="width:60%;"></span></span>
-                                </li>
-                                <li>
-                                    <a href="single.html"><img src="img/trash/17.png" alt="MyPassion" class="alignleft" /></a>
-                                    <p>
-                                        <span>26 May, 2013.</span>
-                                        <a href="single.html">Blandit Rutrum, Erat et Sagittis.</a>
-                                    </p>
-                                    <span class="rating"><span style="width:80%;"></span></span>
-                                </li>
-                                <li class="m-r-no">
-                                    <a href="single.html"><img src="img/trash/18.png" alt="MyPassion" class="alignleft" /></a>
-                                    <p>
-                                        <span>26 May, 2013.</span>
-                                        <a href="single.html">Blandit Rutrum, Erat et Sagittis.</a>
-                                    </p>
-                                    <span class="rating"><span style="width:100%;"></span></span>
-                                </li>
-                                <li>
-                                    <a href="single.html"><img src="img/trash/19.png" alt="MyPassion" class="alignleft" /></a>
-                                    <p>
-                                        <span>26 May, 2013.</span>
-                                        <a href="single.html">Blandit Rutrum, Erat et Sagittis.</a>
-                                    </p>
-                                    <span class="rating"><span style="width:70%;"></span></span>
-                                </li>
-                                <li class="m-r-no">
-                                    <a href="single.html"><img src="img/trash/20.png" alt="MyPassion" class="alignleft" /></a>
-                                    <p>
-                                        <span>26 May, 2013.</span>
-                                        <a href="single.html">Blandit Rutrum, Erat et Sagittis.</a>
-                                    </p>
-                                    <span class="rating"><span style="width:60%;"></span></span>
-                                </li>
-                                <li>
-                                    <a href="single.html"><img src="img/trash/21.png" alt="MyPassion" class="alignleft" /></a>
-                                    <p>
-                                        <span>26 May, 2013.</span>
-                                        <a href="single.html">Blandit Rutrum, Erat et Sagittis.</a>
-                                    </p>
-                                    <span class="rating"><span style="width:80%;"></span></span>
-                                </li>
-                                <li class="m-r-no">
-                                    <a href="single.html"><img src="img/trash/22.png" alt="MyPassion" class="alignleft" /></a>
-                                    <p>
-                                        <span>26 May, 2013.</span>
-                                        <a href="single.html">Blandit Rutrum, Erat et Sagittis.</a>
-                                    </p>
-                                    <span class="rating"><span style="width:100%;"></span></span>
-                                </li>
-
+</th:block>
+</th:block>
                             </ul>
                         </div>
                         
