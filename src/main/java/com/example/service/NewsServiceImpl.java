@@ -1,5 +1,6 @@
 package com.example.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,13 @@ import com.example.entities.News;
 @Transactional
 public class NewsServiceImpl implements NewsService{
 
+	private static ArrayList<News> hot = new ArrayList<News>();
+	private static ArrayList<News> news = new ArrayList<News>();
+	private static ArrayList<News> danhmuc = new ArrayList<News>();
+	
+	public static boolean isNumeric(String str) {
+		return str.matches("-?\\d+(\\.\\d+)?");
+	}
 	@Autowired
 	private NewsDAO newsDAO;
 	
@@ -40,6 +48,47 @@ public class NewsServiceImpl implements NewsService{
 		 newsDAO.deleteById(id);
 		
 	}
+
+
+	@Override
+	public ArrayList<News> getFilmHot() {
+		hot.clear();
+		for (News film : newsDAO.findAll()) {
+			if(film.getHot()==1)
+				hot.add(film);
+		}
+		return hot;
+	}
+
+
+	@Override
+	public List<News> getTheLoai(String tl) {
+		 if(tl.equals("HOT")) {
+			hot.clear();
+			for (News film : newsDAO.findAll()) {
+				if(film.getHot()==1)
+					hot.add(film);
+			}
+			return hot;
+		}else if(tl.equals("NEW")) {
+			news.clear();
+			for (News film : newsDAO.findAll()) {
+				if(film.getNews()==1)
+					news.add(film);
+			}
+			return news;
+		}else {
+		danhmuc.clear();
+		for (News film : newsDAO.findAll()) {
+			if(film.getTheloai().equals(tl))
+				danhmuc.add(film);
+		}
+		return danhmuc;
+		}
+	}
+
+
+
 
 	
 

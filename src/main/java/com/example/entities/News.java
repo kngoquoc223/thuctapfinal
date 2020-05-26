@@ -12,7 +12,6 @@ import javax.persistence.Table;
 public class News {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
 	@Column(name="title")
@@ -31,11 +30,22 @@ public class News {
 	private String img;
 	
 	@Column(name="hot")
-	private String hot;
+	private int hot;
 	
 	@Column(name="new")
-	private String news;
+	private int news;
 	
+	@Column(name="point")
+	private int point;
+	
+	public int getPoint() {
+		return point;
+	}
+
+	public void setPoint(int point) {
+		this.point = point;
+	}
+
 	public News() {
 	  }
 	
@@ -87,30 +97,32 @@ public class News {
 		this.img = img;
 	}
 
-	public String getHot() {
+	public int getHot() {
 		return hot;
 	}
 
-	public void setHot(String hot) {
+	public void setHot(int hot) {
 		this.hot = hot;
 	}
 
-	public String getNews() {
+	public int getNews() {
 		return news;
 	}
 
-	public void setNews(String news) {
+	public void setNews(int news) {
 		this.news = news;
 	}
 
 	@Override
 	public String toString() {
 		return "News [id=" + id + ", title=" + title + ", content=" + content + ", short_content=" + short_content
-				+ ", theloai=" + theloai + ", img=" + img + ", hot=" + hot + ", news=" + news + "]";
+				+ ", theloai=" + theloai + ", img=" + img + ", hot=" + hot + ", news=" + news + ", point=" + point
+				+ "]";
 	}
 
-	public News(Integer id, String title, String content, String short_content, String theloai, String img, String hot,
-			String news) {
+
+	public News(Integer id, String title, String content, String short_content, String theloai, String img, int hot,
+			int news, int point) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -120,6 +132,7 @@ public class News {
 		this.img = img;
 		this.hot = hot;
 		this.news = news;
+		this.point = point;
 	}
 
 	
