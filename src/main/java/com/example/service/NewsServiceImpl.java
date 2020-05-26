@@ -23,24 +23,20 @@ public class NewsServiceImpl implements NewsService{
 		return newsDAO.findAll();
 	}
 
-
-	@Override
-	public Optional<News> findById(Integer id) {
-		return newsDAO.findById(id);
-	}
-
-	@Override
-	public void save(News baiviet) {
-		newsDAO.save(baiviet);
-		
-	}
-
 	@Override
 	public void delete(Integer id) {
 		 newsDAO.deleteById(id);
 		
 	}
 
-	
+	@Override
+	public Optional<News> findOne(int id) {
+		return newsDAO.findById(id);
 
+	}
+
+	@Override
+	public void save(News news) {
+		newsDAO.save(news);
+	}
 }

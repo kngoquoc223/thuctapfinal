@@ -11,13 +11,10 @@ public interface NewsService {
 	
 	public Iterable<News> findAll();
 
-
-
     void delete(Integer id);
-
-
-	Optional<News> findById(Integer id);
-
-
-	void save(News baiviet);
+    
+    Optional<News> findOne(int id);
+    
+    void save(News news);
+    
 }
