@@ -84,9 +84,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </th:block>
 
             <td>
-              <a href="" class="active styling-edit" ui-toggle-class="">
+              <a th:href="@{/admin/{id}/edit(id=${film.id})}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i></a>
-                <a th:href="@{{id}(id=${film.id})}" class="active styling-edit" ui-toggle-class="">
+                <a th:href="@{/admin/{id}/xoa(id=${film.id})}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-times text-danger text"></i></a>
             </td>
           </tr>

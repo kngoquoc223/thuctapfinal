@@ -34,7 +34,7 @@ public class AdminController {
 		return "webapp/WEB-INF/rvfilm/admin/danhsachBaiViet";
 	}
 	
-	@RequestMapping(value="/{id}",method = RequestMethod.GET)
+	@RequestMapping(value="/{id}/xoa",method = RequestMethod.GET)
 	public String xoa(@PathVariable ("id")int id,ModelMap modelMap) {
 		newsService.delete(id);
 		modelMap.put("news", newsService.findAll());
@@ -44,6 +44,20 @@ public class AdminController {
 	public String themBaiViet(ModelMap modelMap) {
 		modelMap.put("news", newsService.findAll());
 		return "webapp/WEB-INF/rvfilm/admin/themBaiViet";
+	}
+	@RequestMapping(value="/{id}/edit",method = RequestMethod.GET)
+	public String edit(@PathVariable ("id")int id,ModelMap modelMap) {	
+		News fi = newsService.findById(id).get() ;
+		modelMap.put("news",fi);
+		return "webapp/WEB-INF/rvfilm/admin/themBaiVietEdit";
+	}
+	
+	@RequestMapping(value="/{id}/editSave",method = RequestMethod.POST)
+	public String Editsave(News news,ModelMap modelMap) {
+		newsService.delete(news.getId());
+		newsService.save(news);
+		modelMap.put("news", newsService.findAll());
+		return "webapp/WEB-INF/rvfilm/admin/danhsachBaiViet";
 	}
 	
 	@RequestMapping(value="save",method = RequestMethod.POST)

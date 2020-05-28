@@ -23,7 +23,6 @@ public interface NewsService {
 
     void delete(Integer id);
 
-
 	Optional<News> findById(Integer id);
 	
 	public List<News> getTheLoai(String tl);
